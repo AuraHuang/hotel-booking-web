@@ -1,0 +1,56 @@
+.postCard {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: var(--pd-or-mg-10);
+    color: var(--white-color);
+
+    .postImg, .postInfo {
+        border-radius: var(--little-radius);
+        overflow: hidden;
+    }
+
+    .postImg {
+        width: 100%;
+        background-position: center;
+        background-size: cover;
+
+        &::before {
+            content: "";
+            display: block;
+            padding-top: 50%;
+        }
+    }
+
+    .postInfo {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(var(--black-light-color), transparent);
+        padding: var(--pd-or-mg-20);
+        text-shadow: 2px 2px var(--black-light-color);
+
+        .postTitle {
+            margin-bottom: var(--pd-or-mg-10);
+            display: inline-block;
+        }
+
+        .postFlag {
+            width: 20px;
+            background-position: center;
+            background-size: cover;
+            display: inline-block;
+            margin-left: var(--pd-or-mg-10);
+
+            &::before {
+                content: "";
+                display: block;
+                padding-top: 100%;
+            }
+        }
+    
+        .postDesc {
+            font-size: 12px;
+        }
+    }
+}

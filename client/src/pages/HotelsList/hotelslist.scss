@@ -1,0 +1,15 @@
+.hotelsList {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: var(--pd-or-mg-20) 0px;
+
+    .listSearch {
+        width: 20%;
+        min-width: 300px; 
+    }
+    
+    .listResult {
+        flex: 1;
+    }
+}

@@ -1,0 +1,12 @@
+.postCards {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .line {
+        display: flex;
+        flex-direction: row;
+        gap: var(--pd-or-mg-20);
+        margin-bottom: var(--pd-or-mg-20);
+    }
+}

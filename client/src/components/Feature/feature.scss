@@ -1,0 +1,26 @@
+.feature {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    
+    .list {
+        width: 100%;
+
+        .listTitle {
+            padding: var(--pd-or-mg-10) 0px;
+
+            h2 {
+                margin-bottom: var(--pd-or-mg-10);
+            }
+        }
+
+        .listItems {
+            padding: var(--pd-or-mg-10) 0px;
+            display: flex;
+            gap: var(--pd-or-mg-20);
+            overflow-x: scroll;
+        }
+    }
+}

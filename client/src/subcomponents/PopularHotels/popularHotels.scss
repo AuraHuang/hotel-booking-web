@@ -1,0 +1,59 @@
+.popularHotel {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 23.8%;
+    text-decoration: none;
+    color: var(--black-color);
+
+    .popularHotelImg {
+        width: 100%;
+        background-position: center;
+        background-size: cover;
+        border-radius: var(--little-radius);
+
+        &::before {
+            content: "";
+            display: block;
+            padding-top: 75%;
+        }
+    }
+
+    .popularHotelTitle {
+        font-weight: bold;
+        padding: var(--pd-or-mg-10) 0px;
+    }
+
+    .popularHotelSubtitle, .popularHotelAmount, .popularHotelRate {
+        margin-bottom: var(--pd-or-mg-10);
+    }
+
+    .popularHotelSubtitle, .popularHotelLevel, .popularHotelComments {
+        color: var(--black-lighter-color);
+    }
+
+    .popularHotelSubtitle, .popularHotelAmount {
+        font-size: 15px;
+    }
+
+    .popularHotelAmount {
+
+    }
+
+    .popularHotelRate {
+
+        
+        .popularHotelScore, .popularHotelLevel, .popularHotelComments {
+            font-size: 12px;
+        }
+
+        .popularHotelScore {
+            color: var(--white-color);
+            background-color: var(--primary-red-color);
+            padding: calc( var(--pd-or-mg-10) / 2 );
+            border-radius: var(--little-radius) var(--little-radius) var(--little-radius) 0px;
+            margin-right: var(--pd-or-mg-10);
+        }
+       
+    }
+}

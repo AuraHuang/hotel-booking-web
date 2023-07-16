@@ -1,0 +1,61 @@
+@keyframes skeletion {
+    to {
+        opacity: 0.6;
+    }
+}
+
+.popularHotelSK {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 23.8%;
+    text-decoration: none;
+    color: var(--black-color);
+
+    .imgSK, .titleSK, .subtitleSK, .amountSK, .rateSK {
+        background-color: var(--black-light-color);
+        border-radius: var(--little-radius);
+        margin-bottom: var(--pd-or-mg-10);
+        animation: skeletion 1s ease infinite alternate;
+    }
+
+    .imgSK {
+        width: 100%;
+
+        &::before {
+            content: "";
+            display: block;
+            padding-top: 75%;
+        }
+    }
+
+    .titleSK {
+        height: 15px;
+        width: 80%;
+        font-weight: bold;
+        padding: var(--pd-or-mg-10) 0px;
+    }
+
+    .subtitleSK {
+        height: 15px;
+        width: 50%;
+    }
+    
+    .amountSK {
+        height: 15px;
+        width: 70%;
+    }
+
+    .rateSK {
+        height: 22px;
+        width: 80%;
+    }
+}
+
+.amountSK {
+    height: 12px;
+    width: 80%;
+    background-color: var(--black-light-color);
+    border-radius: var(--little-radius);
+    animation: skeletion 1s ease infinite alternate;
+}

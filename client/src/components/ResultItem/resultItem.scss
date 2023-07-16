@@ -1,0 +1,164 @@
+.result {
+    display: flex;
+    flex-direction: column;
+    padding: var(--pd-or-mg-20);
+    min-width: 800px;
+
+    .resultTitle {
+        margin-bottom: var(--pd-or-mg-20);
+    
+        .title {
+    
+        }
+    
+        .map {
+    
+        }
+    }
+    
+    .resultItem {
+        // border: 1px solid #000;
+        display: flex;
+        border-radius: var(--little-radius);
+        box-shadow: var(--shadow-color);
+        padding: var(--pd-or-mg-20);
+    
+        .itemImg {
+            width: 200px;
+            background-position: center;
+            background-size: cover;
+            border-radius: var(--little-radius);
+    
+            &::before {
+                content: "";
+                display: block;
+                padding-top: 100%;
+            }
+        }
+    
+        .itemInfo {
+            width: calc( 100% - 200px );
+            margin-left: var(--pd-or-mg-20);
+            display: flex;
+            flex-direction: column;
+    
+            .infoTitle {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+    
+                .title {
+                    
+                }
+    
+                .rate {
+                    display: flex;
+                    flex-direction: row;
+                    font-size: 15px;
+    
+                    .rateLeft {
+                        margin-right: var(--pd-or-mg-10);
+                        text-align: right;
+                        line-height: 1.5;
+    
+                        .level {
+
+                        }
+    
+                        .comments {
+                            font-size: 12px;
+                        }
+                    }
+                    
+                    .rateRight {
+                        padding: var(--pd-or-mg-10);
+                        border-radius: var(--little-radius) var(--little-radius) var(--little-radius) 0px;
+                        border: none;
+                        background-color: var(--primary-red-color);
+                        color: var(--white-color);
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .infoDes {
+                font-size: 15px;
+                line-height: 1.5;
+    
+                .location {
+                    margin-bottom: var(--pd-or-mg-10);
+
+                    .far {
+                        color: var(--primary-red-color);
+                        text-decoration: underline;
+                        margin-right: var(--pd-or-mg-10);
+                    }
+            
+                    .discount {
+                        background-color: var(--primary-red-color);
+                        color: var(--white-color);
+                        padding: calc( var(--pd-or-mg-10) / 2) var(--pd-or-mg-10);
+                    }    
+                }
+                
+                .infoDetail {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items:flex-end;
+                    border-left: 5px solid var(--primary-red-light-color);
+                    padding-left: calc( var(--pd-or-mg-10) / 2);
+        
+                    .detailLeft {
+                        
+                        .equipment {
+        
+                        }
+        
+                        .detailDes {
+                            color: green;
+
+                            b:last-child {
+                                color: red;//剩一間警告
+                            }
+                        }
+                    }
+        
+                    .detailRight {
+                        display: flex;
+                        flex-direction: column;
+                        text-align: right;
+        
+                        .optionDes {
+        
+                        }
+        
+                        .price, .btn {
+                            font-size: 18px;
+                        }
+                        
+                        .price {
+        
+                        }
+        
+                        .tax {
+                            color: var(--black-lighter-color);
+                        }
+        
+                        .btn {
+                            background-color: var(--primary-orange-dark-color);
+                            color: var(--white-color);
+                            border: none;
+                            padding: var(--pd-or-mg-10) var(--pd-or-mg-20);
+                            margin-top: var(--pd-or-mg-10);
+                            font-weight: bold;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    
+    }
+
+}
+

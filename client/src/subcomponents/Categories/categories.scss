@@ -1,0 +1,34 @@
+.cateItem {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    flex-shrink: 0;
+    width: 15.4%;
+
+    .itemImg {
+        width: 100%;
+        background-position: center;
+        background-size: cover;
+        border-radius: var(--little-radius);
+
+        &::before {
+            content: "";
+            display: block;
+            padding-top: 75%;
+        }
+
+    }
+
+    .info {
+        padding: var(--pd-or-mg-10) 0px;
+
+        .title {
+            margin-bottom: var(--pd-or-mg-10);
+        }
+
+        .desc {
+            color: var(--black-lighter-color);
+            font-size: 12px;
+        }
+    }
+}

@@ -1,0 +1,77 @@
+// blue：#BAD7DF
+// red：#DF7861
+// orange：#ECB390
+// yellow：#FCF8E8
+
+* {
+    font-family: '微軟正黑體', serif;
+    margin: 0;
+    padding: 0;
+    // border: 1px solid #000;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    position: relative;
+}
+
+.container {
+    width: 80%;
+    display: block;
+    margin: 0px auto;
+}
+
+
+:root {
+    // style
+    --container-width: 90%;
+
+    --pd-or-mg-10: 10px;
+    --pd-or-mg-20: 20px;
+
+    --little-radius: 5px;
+    --mostly-radius: 50px;
+    --totally-radius: 50%;
+
+    --shadow-color: 0px 0px 15px rgba(0,0,0, 0.2);
+
+    // color
+    --white-color: #fff;
+    --white-light-color: rgba(255,255,255, 0.5);
+
+    --black-color: #000;
+    --black-lighter-color: rgba(0,0,0, 0.5);
+    --black-light-color: rgba(0,0,0, 0.2);
+
+    --primary-blue-color: #BAD7DF;
+    --blue-hue: 193;
+    --blue-saturation: 37%;
+    --blue-light: 80%;
+    --primary-blue-light-color: hsl(var(--blue-hue), var(--blue-saturation), calc(var(--blue-light) + 15%));
+    --primary-blue-dark-color: hsl(var(--blue-hue), var(--blue-saturation), calc(var(--blue-light) - 25%));
+
+    --primary-red-color: #DF7861;
+    --red-hue: 11;
+    --red-saturation: 66%;
+    --red-light: 63%;
+    --primary-red-light-color: hsl(var(--red-hue), var(--red-saturation), calc(var(--red-light) + 15%));
+    --primary-red-dark-color: hsl(var(--red-hue), var(--red-saturation), calc(var(--red-light) - 25%));
+
+
+    --primary-orange-color: #ECB390;
+    --orange-hue: 23;
+    --orange-saturation: 71%;
+    --orange-light: 75%;
+    --primary-orange-light-color: hsl(var(--orange-hue), var(--orange-saturation), calc(var(--orange-light) + 15%));
+    --primary-orange-dark-color: hsl(var(--orange-hue), var(--orange-saturation), calc(var(--orange-light) - 15%));
+
+    
+    --primary-yellow-color: #FCF8E8;
+    --yellow-hue: 48;
+    --yellow-saturation: 77%;
+    --yellow-light: 95%;
+    --primary-yellow-light-color: hsl(var(--yellow-hue), var(--yellow-saturation), calc(var(--yellow-light) + 1%));
+    --primary-yellow-dark-color: hsl(var(--yellow-hue), var(--yellow-saturation), calc(var(--yellow-light) - 25%));
+
+}
+
+

@@ -1,0 +1,61 @@
+.conditions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    font-weight: bold;
+    background-color: var(--white-color);
+    position: absolute;
+    border: 2px solid var(--black-light-color);
+    box-shadow: var(--shadow-color);
+    z-index: 999;
+
+    .condition {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        p {
+            color: var(--black-light-color);
+        }
+
+        .conditionCounter {
+            margin-left: 20px;
+
+            .conditionCounterBtn, .number {
+                color: var(--primary-red-color);
+                padding: 5px;
+            }
+            
+            .number {
+                padding-left: var(--pd-or-mg-10);
+                padding-right: var(--pd-or-mg-10);
+            }
+
+            .conditionCounterBtn {
+                border: 1px solid var(--primary-red-color);
+                background-color: transparent;
+                transition-duration: 0.3s;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--primary-red-color);
+                    color: var(--white-color);
+                }
+
+                &:disabled {
+                    cursor: not-allowed;
+                }
+            }
+
+        }
+
+    }
+
+    .condition:last-child {
+        margin-bottom: 0px; 
+    }
+    
+}
