@@ -11,5 +11,28 @@
     
     .listResult {
         flex: 1;
+        padding: 0px var(--pd-or-mg-20);
+
+        .searchLoading {
+            font-weight: bold;
+        }
+
+        .resultTitle {
+            margin-bottom: var(--pd-or-mg-20);
+        
+            .title {
+        
+            }
+        
+            .map {
+        
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .hotelsList {
+        justify-content: start;
     }
 }

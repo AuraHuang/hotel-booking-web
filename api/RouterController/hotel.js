@@ -47,11 +47,13 @@ export const deleteHotel = async(req, res, next) => {
 }
 
 export const getAllHotels = async(req, res, next) => {
-    const withQuery = req.query
+    const {lowestPrice, highestPrice, ... withQuery} = req.query
     try {
         const hotelsList = await Hotel.find(
             {
-                ...withQuery
+                ...withQuery,
+                cheapestPrice: {$gt: lowestPrice || 0,
+                    $lt: highestPrice || 9999}
             }
         ).limit(7)
         res.status(200).json(hotelsList)

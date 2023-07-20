@@ -5,6 +5,9 @@
     justify-content: center;
 
     .lineOne {
+        // position: fixed;
+        // top: 0;
+        // z-index: 1000;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -21,6 +24,12 @@
         }
 
         .right {
+
+            .username {
+                padding: var(--pd-or-mg-10);
+                margin-left: var(--pd-or-mg-10);
+                font-weight: bold;
+            }
 
             .navButton {
                 padding: var(--pd-or-mg-10);

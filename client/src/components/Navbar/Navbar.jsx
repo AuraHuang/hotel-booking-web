@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import './navbar.scss'
 import { BiBed, BiCar, BiTaxi } from 'react-icons/bi'
 import { BsAirplane } from 'react-icons/bs'
 import { MdOutlineAttractions } from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import { LoginContext } from '../../context/LoginContext'
+import { logout } from '../../constants/actionTypes'
 
 const Navbar = ({type}) => {
+  const { user, dispatch } = useContext(LoginContext)
+
+  const handleClick = (e) => {
+    dispatch({ type: logout })
+  }
+
   return (
     <div className={`navbar ${type}`}>
       <div className='container'>
@@ -21,8 +29,18 @@ const Navbar = ({type}) => {
                 <></>
                 :
                 <>
-                <Link to="/register"><button className='navButton'>註冊</button></Link>
-                <Link to="/login"><button className='navButton'>登入</button></Link>
+                {
+                  user? 
+                  <>
+                  <span className='username'>{ user.username }，您好</span>
+                  <button className='navButton' onClick={handleClick}>登出</button>
+                  </>
+                  :
+                  <>
+                  <Link to="/register"><button className='navButton'>註冊</button></Link>
+                  <Link to="/login"><button className='navButton'>登入</button></Link>
+                  </>
+                }
                 </>
               }
           </div>

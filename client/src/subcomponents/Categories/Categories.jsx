@@ -6,7 +6,7 @@ import Skeleton from '../../components/Skeleton/Skeleton'
 const Categories = ({dataArray,url}) => {
 
   const {data, loading, error} = useFetch(url)
-  console.log(data)
+  // console.log(data)
   
   // const isloading = true
   return (

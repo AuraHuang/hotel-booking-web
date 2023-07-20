@@ -20,6 +20,14 @@
     margin: 0px auto;
 }
 
+@media screen and (max-width: 920px) {
+    .container {
+        width: 100%;
+        margin: 0px var(--pd-or-mg-20);
+    }
+}
+
+
 
 :root {
     // style

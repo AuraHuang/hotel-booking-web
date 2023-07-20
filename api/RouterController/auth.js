@@ -31,6 +31,7 @@ export const login = async(req, res, next) => {
     const loginData = req.body
     try {
         const userData = await User.findOne({ username: loginData.account }) || await User.findOne({ email: loginData.account })
+        // console.log(userData)
         
         if (!userData) 
         return (next(errorMessage(404, "無此帳號")))
@@ -40,8 +41,10 @@ export const login = async(req, res, next) => {
         return (next(errorMessage(404, "帳號/密碼輸入錯誤")))
         
         const token = jwt.sign({ id: userData._id, isAdmin: userData.isAdmin }, process.env.JWT)
-        console.log({ id: userData._id, isAdmin: userData.isAdmin })
-        res.cookie('JWT_token', token, { httpOnly: true }).status(200).json(`${userData.username}登入成功`)
+        const { password, isAdmin, ...userDetails } = userData._doc
+        // console.log({ id: userData._id, isAdmin: userData.isAdmin })
+        // console.log(userDetails)
+        res.cookie('JWT_token', token, { httpOnly: true }).status(200).json({userDetails})
     } catch(error) {
         console.log(error)
         next(errorMessage(500,"請確認輸入帳號密碼正確性",error))

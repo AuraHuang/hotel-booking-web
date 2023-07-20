@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './header.scss'
 import Calendar from '../../subcomponents/Calendar/Calendar'
 import Conditions from '../../subcomponents/Conditions/Conditions'
 import { BsCalendar4, BsPeople } from 'react-icons/bs'
 import { GrLocation } from 'react-icons/gr'
 import format from 'date-fns/format'
-import { useNavigate } from 'react-router-dom'
+import { createSearchParams, useNavigate } from 'react-router-dom'
+import { OptionsContext } from '../../context/OptionsContext'
+import { new_options } from '../../constants/actionTypes'
 
 const Header = () => {
   const [ destination, setDestination] = useState('');
@@ -23,6 +25,8 @@ const Header = () => {
     room: 1,
   })
   const [ openConditions, setOpenConditions ] = useState(false);
+
+  const { city, date, options, dispatch } = useContext(OptionsContext)
 
   const navigate = useNavigate()
 
@@ -55,7 +59,19 @@ const Header = () => {
 
   function handleSearchBarSubmit() {
     console.log(destination, dates, conditions)
-    navigate("/hotelslist", { state: { destination, dates, conditions } })
+    navigate({ 
+      pathname: "/hotelslist",
+      state: { destination, dates, conditions } ,
+      search: createSearchParams({
+        city: destination,
+        startdate: format(dates[0].startDate, 'yyyyMMdd'),
+        enddate: format(dates[0].endDate, 'yyyyMMdd'),
+        adult: conditions['adult'],
+        child: conditions['child'],
+        room: conditions['room'],
+      }).toString()
+    })
+    dispatch({ type: new_options, payload: { city: destination, date: dates, options: conditions } })
   }
 
   return (

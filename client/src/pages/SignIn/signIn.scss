@@ -6,11 +6,12 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 50vh;
+        // top: 50vh;
         left: 50vw;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         width: 40%;
         min-width: 450px;
+        margin-top: 100px;
         border-radius: var(--little-radius);
         box-shadow: var(--shadow-color);
         background-color: var(--primary-yellow-color);
@@ -53,7 +54,7 @@
             }
 
             input {
-                
+                line-height: 1.5;
             }
 
             button {

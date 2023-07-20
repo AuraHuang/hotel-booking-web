@@ -59,3 +59,54 @@
     border-radius: var(--little-radius);
     animation: skeletion 1s ease infinite alternate;
 }
+
+.resultItemSK {
+    width: 100%;
+    background-color: var(--black-light-color);
+    padding: var(--pd-or-mg-20);
+    margin-bottom: var(--pd-or-mg-20);
+    border-radius: var(--little-radius);
+    display: flex;
+    animation: skeletion 1s ease infinite alternate;
+
+    .itemImgSK, .desSK {
+        background-color: var(--black-lighter-color);
+        border-radius: var(--little-radius);
+    }
+
+    .itemImgSK {
+        width: 200px;
+        height: 200px;
+    }
+
+    .itemInfoSK {
+        margin-left: var(--pd-or-mg-20);
+        flex: 1;
+        
+        .desSK {
+            width: 100%;
+            height: 25px;
+            margin-bottom: var(--pd-or-mg-10);
+
+            &:first-child {
+                height: 30px;
+            }
+
+            &:nth-child(2) {
+                width: 50%;
+                min-width: 150px;
+            }
+
+            &:nth-child(3) {
+                width: 30%;
+                min-width: 100px;
+            }
+
+            &:nth-child(4) {
+                width: 40%;
+                min-width: 120px;
+            }
+    
+        }
+    }
+}

@@ -27,11 +27,28 @@ const Skeleton = ({type, length}) => {
         </>
     }
 
+    const ResultItemSkeleton = ({i}) => {
+        return <>
+            <div className="resultItemSK">
+                <div className="itemImgSK"></div>
+                <div className="itemInfoSK">
+                    <div className="desSK"></div>
+                    <div className="desSK"></div>
+                    <div className="desSK"></div>
+                    <div className="desSK"></div>
+                </div>
+            </div>
+        </>
+    }
+
     if (type === "popularHotel" )
     return Array(number).fill().map((item, i) => <PopularHotelSkeleton key={i}/>)
     
     if (type === "amount" )
     return <AmountSkeleton />
+
+    if (type === "resultItem")
+    return Array(number).fill().map((item, i) => <ResultItemSkeleton key={i} />)
 
 }
 

@@ -2,29 +2,26 @@ import React from 'react'
 import './resultItem.scss'
 import { Link } from 'react-router-dom'
 
-const ResultItem = () => {
+const ResultItem = ({ active, dataDetail, conditions, dates }) => {
+  // console.log(dataDetail)
   return (
     <div className='result'>
-      <div className="resultTitle">
-        <h2 className="title">在台北找到505間房間</h2>
-        <div className="map"></div>
-      </div>
       <div className='resultItem'>
-        <div className="itemImg" style={{ background: `url("https://cf.bstatic.com/xdata/images/hotel/square600/347072190.webp?k=74cb5ec7f0ef6a6b424dca16d22b2e0b62c5438fbeef2e9f56bed64167dddbad&o=&s=1")` }}></div>
+        <div className="itemImg" style={{ background: `url("${dataDetail.photos[0]}")` }}></div>
         <div className="itemInfo">
           <div className="infoTitle">
-            <h2 className="title">台南微醺文旅|老宅古城 漫遊體驗</h2>
+            <h2 className="title">{ dataDetail.name }</h2>
             <div className="rate">
               <div className="rateLeft">
-                <div className="level">傑出</div>
-                <div className="comments">1223則評論</div>
+                <div className="level">{ dataDetail.rating < 9.5 ? "傑出" : "極致好評" }</div>
+                <div className="comments">{ dataDetail.comments.toLocaleString() }則評論</div>
               </div>
-              <button className="rateRight">9.5</button>
+              <button className="rateRight">{ dataDetail.rating }</button>
             </div>
           </div>
           <div className="infoDes">
             <div className="location">
-              <span className="far">中西區 台南 400公尺遠</span>
+              <span className="far">{ dataDetail.distance }</span>
               <span className="discount">免費專機接送</span>
             </div>
             <div className="infoDetail">
@@ -44,7 +41,7 @@ const ResultItem = () => {
                   五晚、1位
                 </span>
                 <span className="price">
-                  TWD 4534
+                  TWD { dataDetail.cheapestPrice.toLocaleString() }
                 </span>
                 <span className="tax">
                   含稅費與其他費用
