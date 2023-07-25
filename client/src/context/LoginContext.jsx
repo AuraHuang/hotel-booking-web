@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useReducer } from 'react'
 import { start_login, login_success, login_failure, logout } from '../constants/actionTypes'
 
 const INITIAL_STATE = {
-    user: null, //JSON.parse(localStorage.getItem("user")) || 
+    user: JSON.parse(localStorage.getItem("user")) || null,
     loading: false,
     error: null,
 }
@@ -44,7 +44,9 @@ export const LoginContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(LoginReducer, INITIAL_STATE)
 
     useEffect(() => {
-        localStorage.setItem("user", state.user)
+        // console.log(state)
+
+        localStorage.setItem("user", JSON.stringify(state.user))
     }, [state.user])
 
     return (

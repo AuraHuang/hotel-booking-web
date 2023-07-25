@@ -45,6 +45,25 @@ export const updateRoom = async(req, res, next) => {
     }
 }
 
+export const updateRoomDates = async(req, res, next) => {
+    const id = req.params.id
+    const dates = req.body.dates
+    
+    try {
+        const updateRoomDates = await Room.updateOne(
+            { "roomNumbers._id": id },
+            {
+                $push: {"roomNumbers.$.unavailableDates": dates}
+            }
+        )
+
+        res.status(200).json(updateRoomDates)
+    } catch(error) {
+        console.log(error)
+        next(errorMessage(500,"日期上傳失敗，可能為格式錯誤或找不到ID",error))
+    }
+}
+
 export const deleteRoom = async(req, res, next) => {
     const id = req.params.id
     const hotelId = req.params.hotelid

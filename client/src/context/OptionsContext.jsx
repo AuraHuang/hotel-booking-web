@@ -4,21 +4,21 @@ import { new_options, reset_options } from '../constants/actionTypes'
 
 const INITIAL_STATE = {
     city: "",
-    date: [],
+    dates: [],
     options: {
         adult: 1,
         child: 0,
         room: 1,
     },
     lowestPrice: 0,
-    highestPrice: 9999,
+    highestPrice: 99999,
     dispatch: () => {}
 }
 
 export const OptionsContext = createContext(INITIAL_STATE)
 
 const OptionsReducer = (state, action) => {
-    switch (action.payload) {
+    switch (action.type) {
         case new_options:
             return action.payload
         case reset_options:
@@ -34,7 +34,7 @@ export const OptionsContextProvider = ({children}) => {
         <OptionsContext.Provider
             value={{
                 city:state.city,
-                date: state.date,
+                dates: state.dates,
                 options: state.options,
                 lowestPrice: state.lowestPrice,
                 highestPrice: state.highestPrice,

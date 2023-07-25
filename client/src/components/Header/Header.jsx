@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import './header.scss'
 import Calendar from '../../subcomponents/Calendar/Calendar'
 import Conditions from '../../subcomponents/Conditions/Conditions'
@@ -6,13 +6,13 @@ import { BsCalendar4, BsPeople } from 'react-icons/bs'
 import { GrLocation } from 'react-icons/gr'
 import format from 'date-fns/format'
 import { createSearchParams, useNavigate } from 'react-router-dom'
-import { OptionsContext } from '../../context/OptionsContext'
-import { new_options } from '../../constants/actionTypes'
 
 const Header = () => {
+
+  // console.log(city, date, options)
   const [ destination, setDestination] = useState('');
   const [ openCalendar, setOpenCalendar] = useState(false);
-  const [ dates, setDates ] = useState([
+  const [ calendarDates, setCalendarDates ] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
@@ -26,22 +26,20 @@ const Header = () => {
   })
   const [ openConditions, setOpenConditions ] = useState(false);
 
-  const { city, date, options, dispatch } = useContext(OptionsContext)
-
   const navigate = useNavigate()
 
   function handleChangeDes(e) {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     setDestination(e.target.value)
   }
 
   function handleCalendar() {
     setOpenCalendar(!openCalendar)
-    console.log(openCalendar)
+    // console.log(openCalendar)
   }
 
   function handleChangeDate(item) {
-    setDates([item.selection])
+    setCalendarDates([item.selection])
   }
 
   function handleCondition() {
@@ -58,20 +56,18 @@ const Header = () => {
   }
 
   function handleSearchBarSubmit() {
-    console.log(destination, dates, conditions)
+    // console.log(destination, calendarDates, conditions)
     navigate({ 
       pathname: "/hotelslist",
-      state: { destination, dates, conditions } ,
       search: createSearchParams({
         city: destination,
-        startdate: format(dates[0].startDate, 'yyyyMMdd'),
-        enddate: format(dates[0].endDate, 'yyyyMMdd'),
+        startdate: format(calendarDates[0].startDate, 'yyyyMMdd'),
+        enddate: format(calendarDates[0].endDate, 'yyyyMMdd'),
         adult: conditions['adult'],
         child: conditions['child'],
         room: conditions['room'],
       }).toString()
     })
-    dispatch({ type: new_options, payload: { city: destination, date: dates, options: conditions } })
   }
 
   return (
@@ -90,14 +86,14 @@ const Header = () => {
             <div onClick={handleCalendar}>
               <BsCalendar4 />
               <span className="searchText">
-                { format(dates[0].startDate, 'yyyy/MM/dd')} - { format(dates[0].endDate, 'yyyy/MM/dd')}
+                { format(calendarDates[0].startDate, 'yyyy/MM/dd')} - { format(calendarDates[0].endDate, 'yyyy/MM/dd')}
               </span>
             </div>
             <div className='searchWinowPosition'>
               { openCalendar && 
                 <Calendar 
                   changeEvent={handleChangeDate}
-                  dateRange={dates}
+                  dateRange={calendarDates}
                 />
               }
             </div>

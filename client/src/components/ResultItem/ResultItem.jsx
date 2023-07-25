@@ -1,9 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './resultItem.scss'
-import { Link } from 'react-router-dom'
+import { Link, createSearchParams, useNavigate } from 'react-router-dom'
+import { countDateAndPrice } from '../../../datesCalculate.js'
+import moment from 'moment'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 
-const ResultItem = ({ active, dataDetail, conditions, dates }) => {
-  // console.log(dataDetail)
+const ResultItem = ({ active, dataDetail, searchParams }) => {
+  // console.log(searchParams.get('options'))
+  const navigate = useNavigate()
+
+  const startdate = moment(searchParams.get('startdate')).toDate()
+  const endate = moment(searchParams.get('enddate')).toDate()
+  const adult = searchParams.get('adult')
+  const child = searchParams.get('child')
+  const room = searchParams.get('room')
+
+  const { days, totalHotelPrice } = countDateAndPrice(startdate,endate,dataDetail.cheapestPrice)
+  // console.log(days, totalHotelPrice)
+
+  const handleClickHotel = () => {
+    navigate({
+      pathname: `/hotel/${dataDetail._id}`,
+      search: createSearchParams(searchParams).toString()
+    })
+  }
+
+  const ItemTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: '#F5544A',
+      padding: 10,
+    },
+  }));
+
   return (
     <div className='result'>
       <div className='resultItem'>
@@ -38,17 +69,23 @@ const ResultItem = ({ active, dataDetail, conditions, dates }) => {
               </div>
               <div className="detailRight">
                 <span className="optionDes">
-                  五晚、1位
+                  <p>{ days==0? `請選擇住宿日期`: `總共${days}晚` }</p>
+                  <p>{adult}位大人{ child > 0? `、${child}位小孩` : '' }</p>
                 </span>
                 <span className="price">
-                  TWD { dataDetail.cheapestPrice.toLocaleString() }
+                  TWD { days==0? dataDetail.cheapestPrice.toLocaleString() : totalHotelPrice.toLocaleString() }
                 </span>
                 <span className="tax">
                   含稅費與其他費用
                 </span>
-                <Link to="/hotel/id123">
-                  <button className='btn'>查看客房供應情況</button>
-                </Link>
+                {
+                  days == 0 ?
+                  <ItemTooltip title="請先輸入住宿日期，並按左側 搜尋 查看結果" followCursor>
+                    <span><button className='btn' onClick={handleClickHotel} disabled>查看客房供應情況</button></span>
+                  </ItemTooltip>
+                  :
+                  <button className='btn' onClick={handleClickHotel}>查看客房供應情況</button>
+                }
               </div>
             </div>
           </div>

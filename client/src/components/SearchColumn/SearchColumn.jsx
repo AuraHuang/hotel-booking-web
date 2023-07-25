@@ -3,49 +3,23 @@ import './searchColumn.scss'
 import Calendar from '../../subcomponents/Calendar/Calendar'
 import Conditions from '../../subcomponents/Conditions/Conditions';
 import format from 'date-fns/format'
-const SearchColumn = ({ searchData,searchsubmit }) => {
-
-  const city = searchData.city
-  const date = searchData.date
-  const conditions = searchData.conditions
+import { OptionsContext } from '../../context/OptionsContext';
+import moment from 'moment';
+import { useSearchParams } from 'react-router-dom';
+const SearchColumn = ({conditions,searchsubmit}) => {
+  // console.log(conditions)
 
   const [ openCalendar, setOpenCalendar] = useState(false);
   const [ openConditions, setOpenConditions ] = useState(false);
 
-  const [inputCity, setInputCity] = useState(city)
-  const [inputDate, setInputDate] = useState(date)
-  const [inputConditions, setInputConditions] = useState(conditions)
-  const [inputLowestPrice, setLowestPrice] = useState(0)
-  const [inputHighestPrice, setHighestPrice] = useState(9999)
-
-  function handleChangeCity(e) {
-    setInputCity(e.target.value)
-  }
-
-  function handleChangeLowestPrice(e) {
-    setLowestPrice(e.target.value)
-  }
-
-  function handleChangeHighestPrice(e) {
-    setHighestPrice(e.target.value)
-  }
-
-  function handleCalendar() {
-    setOpenCalendar(!openCalendar)
-    console.log(openCalendar)
-  }
-
-  function handleChangeDate(item) {
-    // console.log(item)
-    setInputDate([item.selection])
-  }
-
-  function handleCondition() {
-    setOpenConditions(!openConditions)
-  }
+  const [inputCity, setInputCity] = useState(conditions.city)
+  const [inputDate, setInputDate] = useState(conditions.dates)
+  const [inputConditions, setInputConditions] = useState(conditions.options)
+  const [inputLowestPrice, setLowestPrice] = useState(conditions.lowestPrice)
+  const [inputHighestPrice, setHighestPrice] = useState(conditions.highestPrice)
   
   function handleCounter(conditionType, calcSign) {
-    console.log(inputConditions,conditionType, calcSign)
+    // console.log(inputConditions,conditionType, calcSign)
     setInputConditions(prev => {
       return {
         ...prev,
@@ -59,11 +33,12 @@ const SearchColumn = ({ searchData,searchsubmit }) => {
     // console.log(inputCity,inputDate,inputConditions)
     const data = { 
       city: inputCity,
-      date: inputDate,
-      conditions: inputConditions,
+      dates: inputDate,
+      options: inputConditions,
       lowestPrice: inputLowestPrice,
       highestPrice: inputHighestPrice
-   }
+    }
+    // console.log(data)
     searchsubmit(data)
   }
 
@@ -73,11 +48,11 @@ const SearchColumn = ({ searchData,searchsubmit }) => {
         <h2 className="searchTitle">搜尋</h2>
           <div className="searchItem">
             <label htmlFor="" className='searchLabel'>目的地/住宿名稱</label>
-            <input type="Search" placeholder={city === "" ? '要去哪裡?' : city} className='searchInput' onChange={handleChangeCity} />
+            <input type="Search" placeholder={inputCity === "" ? '要去哪裡?' : inputCity} className='searchInput' onChange={(e) => setInputCity(e.target.value)} />
           </div>
           <div className="searchItem">
             <label htmlFor="" className='searchLabel'>入住/退房日期</label>
-            <div onClick={handleCalendar}>
+            <div onClick={() => setOpenCalendar(!openCalendar)}>
               <div className="searchText">
                 { inputDate? format(inputDate[0].startDate, 'yyyy/MM/dd') : ''}
                  - 
@@ -87,7 +62,7 @@ const SearchColumn = ({ searchData,searchsubmit }) => {
             <div className='searchWinowPosition'>
               { openCalendar && 
                 <Calendar 
-                  changeEvent={handleChangeDate}
+                  changeEvent={(item) => setInputDate([item.selection])}
                   dateRange={inputDate}
                 />
               }
@@ -95,10 +70,10 @@ const SearchColumn = ({ searchData,searchsubmit }) => {
           </div>
           <div className="searchItem">
             <label htmlFor="" className='searchLabel'>每晚最低價格</label>
-            <input type="number" className='searchInput' min="1" placeholder={inputLowestPrice} onChange={handleChangeLowestPrice}/>
+            <input type="number" className='searchInput' min="1" placeholder={inputLowestPrice?? 0} onChange={(e) => setLowestPrice(e.target.value)}/>
             <label htmlFor="" className='searchLabel'>每晚最高價格</label>
-            <input type="number" className='searchInput' min="1" placeholder={inputHighestPrice} onChange={handleChangeHighestPrice} />
-            <div onClick={handleCondition}>
+            <input type="number" className='searchInput' min="1" placeholder={inputHighestPrice?? 99999} onChange={(e) => setHighestPrice(e.target.value)} />
+            <div onClick={() => setOpenConditions(!openConditions)}>
               <div className="searchText">
                 { inputConditions? inputConditions['adult'] : 1 }位成人．
                 { inputConditions? inputConditions['child'] : 0 }位小孩．

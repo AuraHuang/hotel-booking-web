@@ -11,6 +11,7 @@ const SignIn = () => {
     const location = useLocation()
     const navigate = useNavigate()
     
+    
     const [registererror, setRegisterError] = useState("")
     const [registerData, setRegisterData] = useState({
         username: undefined,
@@ -50,7 +51,7 @@ const SignIn = () => {
     const handleRegisterClick = async(e) => {
         e.preventDefault()
         setRegisterLoading(true)
-        console.log(registerloading)
+        // console.log(registerloading)
         try {
             const res = await axios.post("/api/v1/auth/register", registerData)
             navigate("/login", res)
@@ -60,7 +61,7 @@ const SignIn = () => {
             setRegisterError(error.response.data.message)
         }
         setRegisterLoading(false)
-        console.log(registerloading)
+        // console.log(registerloading)
     }
 
     const handleLoginChange = (e) => {
@@ -74,8 +75,7 @@ const SignIn = () => {
         try {
             const res = await axios.post("/api/v1/auth/login", loginData)
             dispatch({type: login_success, payload: res.data.userDetails})
-            navigate("/")
-            console.log(res)
+            navigate(-1)
         } catch(error) {
             dispatch({type: login_failure, payload: error.response.data.message})
         }

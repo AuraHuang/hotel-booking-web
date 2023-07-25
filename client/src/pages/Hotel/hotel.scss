@@ -302,6 +302,15 @@
                     padding: var(--pd-or-mg-10);
                     font-size: 15px;
 
+                    .specialTitle {
+                        margin-bottom: var(--pd-or-mg-10);
+                    }
+                    
+                    .specialDates {
+                        font-weight: bold;
+                        font-size: 0.9em;
+                    }
+
                     .specialContent {
                         padding: var(--pd-or-mg-10) 0px;
                     }
@@ -311,7 +320,8 @@
                     }
                     
                     .desPrice {
-                        margin-bottom: var(--pd-or-mg-10);
+                        padding: var(--pd-or-mg-20) 0px;
+                        font-weight: bold;
                     }
                     
                     .desBookingBtn {

@@ -4,11 +4,14 @@ import App from './App.jsx'
 import './index.scss'
 import 'normalize.css'
 import { LoginContextProvider } from './context/LoginContext'
+import { OptionsContextProvider } from './context/OptionsContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <LoginContextProvider>
-      <App />
-    </LoginContextProvider>
+    <OptionsContextProvider>
+      <LoginContextProvider>
+        <App />
+      </LoginContextProvider>
+    </OptionsContextProvider>
   </React.StrictMode>,
 )

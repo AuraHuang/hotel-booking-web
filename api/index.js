@@ -5,6 +5,7 @@ import authApiRoutes from './ApiRoutes/auth.js'
 import hotelsApiRoutes from './ApiRoutes/hotels.js'
 import roomsApiRoutes from './ApiRoutes/rooms.js'
 import usersApiRoutes from './ApiRoutes/users.js'
+import orderApiRoutes from './ApiRoutes/order.js'
 import cookieParser from "cookie-parser"
 
 const app = express()
@@ -48,6 +49,7 @@ app.use("/api/v1/hotels", hotelsApiRoutes)
 app.use("/api/v1/auth", authApiRoutes)
 app.use("/api/v1/rooms", roomsApiRoutes)
 app.use("/api/v1/users", usersApiRoutes)
+app.use("/api/v1/orders", orderApiRoutes)
 
 app.use((error,req, res, next) => {
     const errorStatus = error.status || 500

@@ -3,69 +3,48 @@ import './hotelslist.scss'
 import Navbar from '../../components/Navbar/Navbar'
 import ResultItem from '../../components/ResultItem/ResultItem'
 import SearchColumn from '../../components/SearchColumn/SearchColumn'
-import { useLocation, useParams, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch'
-import { new_options } from '../../constants/actionTypes'
-import { OptionsContext } from '../../context/OptionsContext'
 import moment from 'moment'
 import Skeleton from '../../components/Skeleton/Skeleton'
+import Footer from '../../components/Footer/Footer'
 
 const HotelsList = () => {
 
-  const location = useLocation()
-  const params = useParams()
+  // const { city, dates, options, lowestPrice, highestPrice, dispatch } = useContext(OptionsContext)
   const [searchParams, setSearchParams] = useSearchParams()
-  
   const [conditions,setConditions] = useState({
     city: searchParams.get('city')?? '',
-    date: [
+    dates: [
       {
         startDate: moment(searchParams.get('startdate')).toDate(),
-        //stringToDate(),
         endDate: moment(searchParams.get('enddate')).toDate(),
-        // stringToDate(),
         key: 'selection',
       }
-    ]?? {},
-    conditions: {
+    ]?? [{}],
+    options: {
       adult: Number(searchParams.get('adult'))?? 1,
       child: Number(searchParams.get('child'))?? 0,
       room: Number(searchParams.get('room'))?? 1,
-    },
-    lowestPrice: 0,
-    highestPrice: 9999,
+    }
   })
-  // console.log(conditions)
-  // const destination = location.state?.destination
-  // const dates = location.state?.dates
-  // const conditions = location.state?.conditions
 
-  const [fetchDataUrl, setFetchDataUrl] = useState(`/api/v1/hotels?${ conditions.city? "city=" + conditions.city : "popularHotel=true" }&lowestPrice=${conditions.lowestPrice}&highestPrice=${conditions.highestPrice}`)
+  const [fetchDataUrl, setFetchDataUrl] = useState(`/api/v1/hotels?${ conditions.city? "city=" + conditions.city : "popularHotel=true" }`) 
   const { loading, data, error }  = useFetch(fetchDataUrl)
-  const { dispatch } = useContext(OptionsContext)
 
-  const searchsubmit = (data) => {
-    const { city, date, conditions, lowestPrice, highestPrice } = data
-    dispatch({ type: new_options, payload: { city: city, dates: date, options: conditions }})
-    setConditions({
-      city: city,
-      date: date,
-      conditions: conditions,
-      lowestPrice: lowestPrice,
-      highestPrice: highestPrice,
-    })
+  useEffect(() => {  
+    setFetchDataUrl(`/api/v1/hotels?${ conditions.city? "city=" + conditions.city : "popularHotel=true" }${ conditions.lowestPrice? "&lowestPrice=" + conditions.lowestPrice : ''}${ conditions.lowestPrice? "&highestPrice=" + conditions.highestPrice : ''}`)
     setSearchParams({
-      city: city,
-      startdate: moment(date[0].startDate).format('YYYYMMDD'),
-      enddate: moment(date[0].endDate).format('YYYYMMDD'),
-      adult: conditions['adult'],
-      child: conditions['child'],
-      room: conditions['room'],
-      lowestprice: lowestPrice,
-      highestprice: highestPrice,
+      city: conditions.city,
+      startdate: moment(conditions.dates[0].startDate).format('YYYYMMDD'),
+      enddate: moment(conditions.dates[0].endDate).format('YYYYMMDD'),
+      adult: conditions.options['adult'],
+      child: conditions.options['child'],
+      room: conditions.options['room'],
+      lowestPrice: conditions.lowestPrice?? '',
+      highestPrice: conditions.highestPrice?? '',
     })
-    setFetchDataUrl(`/api/v1/hotels?${ city? "city=" + city : "popularHotel=true&"}&lowestPrice=${lowestPrice}&highestPrice=${highestPrice}`)
-  }
+  },[conditions])
 
   return (
     <>
@@ -74,8 +53,8 @@ const HotelsList = () => {
       <div className="hotelsList">
         <div className="listSearch">
           <SearchColumn 
-            searchData={conditions}
-            searchsubmit={searchsubmit}
+            conditions={conditions}
+            searchsubmit={setConditions}
           />
         </div>
         <div className="listResult">
@@ -94,8 +73,7 @@ const HotelsList = () => {
                     active={index==0 && "active"}
                     key={item._id}
                     dataDetail={item}
-                    conditions={conditions.conditions}
-                    dates={conditions.dates}
+                    searchParams={searchParams}
                   />
                 )
               }
@@ -104,6 +82,7 @@ const HotelsList = () => {
         </div>
       </div>
     </div>
+    <Footer />
     </>
   )
 }
