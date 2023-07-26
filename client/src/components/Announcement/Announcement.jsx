@@ -1,8 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './announcement.scss'
 import { BiInfoCircle } from 'react-icons/bi'
 
 const Announcement = ({type}) => {
+    const navigate = useNavigate()
+
   return (
     <div className='announcement'>
         <div className="container">
@@ -47,8 +50,8 @@ const Announcement = ({type}) => {
                             <div className="right">
                                 <h2>優惠立即享</h2>
                                 <p>登入您的Booking帳戶，尋找Genius圖標，輕鬆省一筆</p>
-                                <button>登入</button>
-                                <button className='notDecorate'>註冊</button>
+                                <button onClick={() => navigate('/login')}>登入</button>
+                                <button className='notDecorate' onClick={() => navigate('/register')}>註冊</button>
                             </div>
                         </div>
                     </div>

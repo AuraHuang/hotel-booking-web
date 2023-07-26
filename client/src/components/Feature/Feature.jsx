@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import './feature.scss'
-import { CategoriesType, CategoriesCities, PopularHotelsData } from '../../data'
+import { CategoriesType, CategoriesCities, PopularHotelsData, Attractions } from '../../data'
 import Categories from '../../subcomponents/Categories/Categories'
 import PostCards from '../../subcomponents/PostCard/PostCards'
 import PopularHotels from '../../subcomponents/PopularHotels/PopularHotels'
 import useFetch from '../../hooks/useFetch'
+import ListItem from '../../subcomponents/ListItem/ListItem'
 
 
 const feature = () => {
@@ -17,41 +18,34 @@ const feature = () => {
   return (
     <div className='feature'>
         <div className="container">
-          <div className="list">
-            <div className="listTitle">
-              <h2>新潮目的地</h2>
-              <p>來自臺灣的旅客的最熱門選擇</p>
-            </div>
-            <div className="listItems">
-              <PostCards />
-            </div>
-          </div>
-          <div className="list">
-            <div className="listTitle">
-              <h2>探索臺灣</h2>
-              <p>這些熱門目的地魅力無窮，等你來體驗！</p>
-            </div>
-            <div className="listItems">
-              <Categories dataArray={CategoriesCities} url={cityUrl} />
-            </div>
-          </div>
-          <div className="list">
-            <div className="listTitle">
-              <h2>依住宿類型瀏覽</h2>
-            </div>
-            <div className="listItems">
-              <Categories dataArray={CategoriesType} url={typeUrl} />
-            </div>
-          </div>
-          <div className="list">
-            <div className="listTitle">
-              <h2>入住本站的優質特色住宿</h2>
-              <p>城堡、Villa、船屋、冰屋等等，本站什麼都有！</p>
-            </div>
-            <div className="listItems">
-              <PopularHotels dataArray={data} loading={loading}/>
-            </div>
-          </div>
+
+          <ListItem 
+            title={"新潮目的地"}
+            des={"來自臺灣的旅客的最熱門選擇"}
+            component={<PostCards dataArray={Attractions}/>}
+            isScrollBtnShow={Attractions.length > 5}
+          />
+
+          <ListItem 
+            title={"探索臺灣"}
+            des={"這些熱門目的地魅力無窮，等你來體驗！"}
+            component={<Categories dataArray={CategoriesCities} url={cityUrl} />}
+            isScrollBtnShow={CategoriesCities.length > 5}
+          />
+
+          <ListItem 
+            title={"依住宿類型瀏覽"}
+            component={<Categories dataArray={CategoriesType} url={typeUrl} />}
+            isScrollBtnShow={CategoriesType.length > 5}
+          />
+          
+          <ListItem 
+            title={"入住本站的優質特色住宿"}
+            des={"城堡、Villa、船屋、冰屋等等，本站什麼都有！"}
+            component={<PopularHotels dataArray={data} loading={loading}/>}
+            isScrollBtnShow={data.length > 4}
+          />
+
         </div>
     </div>
   )

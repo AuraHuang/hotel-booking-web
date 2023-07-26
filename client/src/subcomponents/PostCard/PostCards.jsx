@@ -1,9 +1,7 @@
 import React from 'react'
 import './postCards.scss'
 import PostCard from './PostCard'
-import { Attractions } from '../../data'
-
-const PostCards = () => {
+const PostCards = ({dataArray}) => {
 
   // useEffect(() => {
   //   console.log(Attractions)
@@ -12,10 +10,10 @@ const PostCards = () => {
   return (
     <div className='postCards'>
         <div className="line">
-          <PostCard dataArray={Attractions.slice(0,2)} />
+          <PostCard dataArray={dataArray.slice(0,2)} />
         </div>
         <div className="line">
-          <PostCard dataArray={Attractions.slice(2,5)} />
+          <PostCard dataArray={dataArray.slice(2,5)} />
         </div>
     </div>
   )

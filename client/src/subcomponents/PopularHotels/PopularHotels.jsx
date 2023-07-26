@@ -12,7 +12,7 @@ const PopularHotels = ({dataArray, loading}) => {
         :
         dataArray.map((item, index) => {
           return (
-              <Link className='popularHotel' to={`hotels/${item._id}`} key={index}>
+              <Link className='popularHotel' to={`hotel/${item._id}`} key={index}>
                 <div className="popularHotelImg" style={{ backgroundImage: `url("${ item.photos }")` }}></div>
                 <div className="popularHotelTitle">{ item.name }</div>
                 <div className="popularHotelSubtitle">{ item.city }</div>
