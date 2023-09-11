@@ -7,9 +7,10 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-           target: 'http://localhost:3000',
-           changeOrigin: true,
-           secure: false,      
+          // localhost:3000 
+          target: 'http://booking-web-backend.vercel.app',
+          changeOrigin: true,
+          secure: false,      
        }
     }
   }
