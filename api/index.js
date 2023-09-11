@@ -33,7 +33,7 @@ mongoose.connection.on("disconnected", () => {
 const port = 3000
 
 app.get('/', (req, res) => {
-    res.send('hellow world')
+    res.send('hello world')
 })
 
 app.listen(port, () => {
