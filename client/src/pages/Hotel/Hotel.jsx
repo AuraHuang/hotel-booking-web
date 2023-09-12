@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import './hotel.scss'
 import Navbar from '../../components/Navbar/Navbar'
 import { MdGroups2, MdLocationOn, MdSmokeFree, MdClose } from 'react-icons/md'
 import { BiBookmarkHeart, BiWifi, BiSolidChevronLeft, BiSolidChevronRight } from 'react-icons/bi'
 import { photos } from '../../data'
 import { gsap } from "gsap";
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch'
 import { LoginContext } from '../../context/LoginContext'
 import Footer from '../../components/Footer/Footer'
