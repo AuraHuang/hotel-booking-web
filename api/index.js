@@ -7,8 +7,11 @@ import roomsApiRoutes from './ApiRoutes/rooms.js'
 import usersApiRoutes from './ApiRoutes/users.js'
 import orderApiRoutes from './ApiRoutes/order.js'
 import cookieParser from "cookie-parser"
+import cors from "cors";
 
 const app = express()
+
+app.use(cors())
 
 dotenv.config()
 
