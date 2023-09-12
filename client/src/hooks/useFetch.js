@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+const customAxios = axios.create({
+    baseURL: "https://booking-web-backend-398712.de.r.appspot.com/"
+})
+
 const useFetch = (url) => {
     // console.log(url)
     const [ data, setData ] = useState([])
@@ -11,7 +15,7 @@ const useFetch = (url) => {
         const fetchData = async() => {
             setLoading(true)
             try {
-                const response = await axios.get(url)
+                const response = await customAxios.get(url)
                 setData(response.data)
                 // console.log(response.data)
             } catch(error) {

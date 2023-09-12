@@ -337,3 +337,37 @@
         }
     }
 }
+
+
+@media screen and (max-width: 920px) {
+    .hotel {
+        .hotelHeader {
+            flex-direction: column;
+            
+            li {
+                margin-bottom: 8px;
+            }
+        }
+    
+        .hotelBody {
+            .hotelTitle {
+                flex-direction: column;
+        
+                .hotelTitleLeft {
+                    
+                    .hotelName, .address {
+                        display: block;
+                        padding: 16px 0px;
+                    }
+                }
+            }
+
+            .hotelDes {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    
+        
+    }
+}

@@ -1,6 +1,7 @@
 .navbar {
     background-color: var(--primary-blue-color);
     width: 100%;
+    min-width: 100vw;
     display: flex;
     justify-content: center;
 
@@ -92,4 +93,11 @@
     border: 2px solid #fff !important;
     background-color: var(--white-light-color);           
 }
+
+@media screen and (max-width: 920px) {
+    .lineTwo {
+        flex-direction: column;
+    }
+}
+
 

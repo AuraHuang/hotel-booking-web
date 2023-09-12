@@ -22,8 +22,8 @@ const Navbar = ({type}) => {
             <Link to="/" className='logo'>Booking</Link>
           </div>
           <div className='right'>
-            <button className='navButton navButtonFlag' />
-            <button className='navButton navButtonNotif'>使用webpack帳號</button>
+            {/* <button className='navButton navButtonFlag' /> */}
+            {/* <button className='navButton navButtonNotif'>使用webpack帳號</button> */}
               {
                 type == "auth" ? 
                 <></>
