@@ -30,6 +30,13 @@ mongoose.connection.on("disconnected", () => {
     console.log("mongoDB disconnected!")
 })
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://hotel-booking-web-gold.vercel.app')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+    next();
+})
+
 app.get('/', (req, res) => {
     const name = process.env.NAME || 'World';
     res.send(`Hello ${name}!`);

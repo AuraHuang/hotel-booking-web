@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       '/api': {
           // target: 'http://localhost:3000/',
-          target: 'https://api-25fmrw53mq-de.a.run.app/',
+          target: 'https://booking-web-backend-398712.de.r.appspot.com/',
           changeOrigin: true,
           secure: false,      
        }
