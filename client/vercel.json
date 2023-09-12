@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/api/(.*)",
-            "destination": "https://booking-web-backend-398712.de.r.appspot.com"
+            "destination": "https://booking-web-backend-398712.de.r.appspot.com/(.*)"
         }
     ]
 }
