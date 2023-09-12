@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      {
+        "source": "/api/:match*",
+        "destination": "https://booking-web-backend-398712.de.r.appspot.com/:match*"
+      }
+    ]
+  }
