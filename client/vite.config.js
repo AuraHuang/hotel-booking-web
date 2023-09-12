@@ -7,8 +7,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-          target: 'http://localhost:3000/',
-          // target: 'https://booking-web-backend.vercel.app',
+          // target: 'http://localhost:3000/',
+          target: 'https://api-25fmrw53mq-de.a.run.app/',
           changeOrigin: true,
           secure: false,      
        }

@@ -30,11 +30,12 @@ mongoose.connection.on("disconnected", () => {
     console.log("mongoDB disconnected!")
 })
 
-const port = 3000
-
 app.get('/', (req, res) => {
-    res.send('hello world')
+    const name = process.env.NAME || 'World';
+    res.send(`Hello ${name}!`);
 })
+
+const port = process.env.PORT || 8080
 
 app.listen(port, () => {
     connect()
