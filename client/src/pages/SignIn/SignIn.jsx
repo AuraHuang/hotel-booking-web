@@ -48,12 +48,16 @@ const SignIn = () => {
         setCheckPwd( prev => ({...prev, [e.target.id]: e.target.value}) )
     }
 
+    const customAxios = axios.create({
+        baseURL: "https://booking-web-backend-398712.de.r.appspot.com/"
+    })
+
     const handleRegisterClick = async(e) => {
         e.preventDefault()
         setRegisterLoading(true)
         // console.log(registerloading)
         try {
-            const res = await axios.post("/api/v1/auth/register", registerData)
+            const res = await customAxios.post("/api/v1/auth/register", registerData)
             navigate("/login", res)
             console.log(res)
         } catch(error) {
@@ -73,7 +77,7 @@ const SignIn = () => {
         e.preventDefault()
         dispatch({type: start_login})
         try {
-            const res = await axios.post("/api/v1/auth/login", loginData)
+            const res = await customAxios.post("/api/v1/auth/login", loginData)
             dispatch({type: login_success, payload: res.data.userDetails})
             navigate(-1)
         } catch(error) {
