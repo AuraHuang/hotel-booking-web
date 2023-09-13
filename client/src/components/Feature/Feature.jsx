@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
 import './feature.scss'
-import { CategoriesType, CategoriesCities, PopularHotelsData, Attractions } from '../../data'
+import { CategoriesType, CategoriesCities, Attractions } from '../../data'
 import Categories from '../../subcomponents/Categories/Categories'
 import PostCards from '../../subcomponents/PostCard/PostCards'
 import PopularHotels from '../../subcomponents/PopularHotels/PopularHotels'

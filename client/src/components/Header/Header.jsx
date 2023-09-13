@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './header.scss'
 import Calendar from '../../subcomponents/Calendar/Calendar'
 import Conditions from '../../subcomponents/Conditions/Conditions'
@@ -10,12 +10,16 @@ import { createSearchParams, useNavigate } from 'react-router-dom'
 const Header = () => {
 
   // console.log(city, date, options)
+  const ref = useRef(null)
+  const initStartDate = new Date()
+  const initEndDate = new Date()
+  initEndDate.setDate(initEndDate.getDate() + 1)
   const [ destination, setDestination] = useState('');
   const [ openCalendar, setOpenCalendar] = useState(false);
   const [ calendarDates, setCalendarDates ] = useState([
     {
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: initStartDate,
+      endDate: initEndDate,
       key: 'selection',
     }
   ])
@@ -40,6 +44,9 @@ const Header = () => {
 
   function handleChangeDate(item) {
     setCalendarDates([item.selection])
+    if (item.selection.startDate !== item.selection.endDate) {
+      setOpenCalendar(false)
+    }
   }
 
   function handleCondition() {
@@ -70,6 +77,17 @@ const Header = () => {
     })
   }
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setOpenConditions(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+  }, [openConditions])
+
   return (
     <div className='header'>
       <div className="container">
@@ -98,7 +116,7 @@ const Header = () => {
               }
             </div>
           </div>
-          <div className="searchItem">
+          <div className="searchItem" ref={ref}>
             <div onClick={handleCondition}>
               <BsPeople />
               <span className="searchText">{ conditions['adult'] }位成人．{ conditions['child'] }位小孩．{ conditions['room'] }間房</span>
