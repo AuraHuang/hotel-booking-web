@@ -58,7 +58,7 @@ const SignIn = () => {
         // console.log(registerloading)
         try {
             const res = await customAxios.post("/api/v1/auth/register", registerData)
-            navigate("/", res)
+            navigate("/")
             console.log(res)
         } catch(error) {
             console.log(error)
